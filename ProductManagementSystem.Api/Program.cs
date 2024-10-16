@@ -1,5 +1,11 @@
+using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using ProductManagementSystem.Application.Behaviors;
+using ProductManagementSystem.Domain.Interfaces;
 using ProductManagementSystem.Infrastructure.Persistence;
+using ProductManagementSystem.Infrastructure.Repositories;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +18,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+
+builder.Services.AddMediatR(configuration =>
+    configuration.RegisterServicesFromAssembly(typeof(ValidationBehavior<,>).Assembly));
+
+builder.Services.AddValidatorsFromAssembly(typeof(ValidationBehavior<,>).Assembly);
+
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
