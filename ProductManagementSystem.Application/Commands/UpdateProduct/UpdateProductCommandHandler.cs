@@ -8,10 +8,10 @@ namespace ProductManagementSystem.Application.Commands.UpdateProduct
     {
         public async Task<bool> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            var product = await productRepository.GetProductByIdAsync(command.Product.Id);
+            var product = await productRepository.GetProductByIdAsync(command.Id);
 
-            product.Name = command.Product.Name;
-            product.Price = command.Product.Price;
+            product.Name = command.Name;
+            product.Price = command.Price;
 
             await productRepository.UpdateProductAsync(product);
 

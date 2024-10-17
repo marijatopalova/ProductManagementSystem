@@ -1,7 +1,6 @@
 ﻿using MediatR;
-using ProductManagementSystem.Domain.Entities;
 
 namespace ProductManagementSystem.Application.Commands.CreateProduct
 {
-    public record CreateProductCommand(Product Product) : IRequest<int>;
+    public record CreateProductCommand(string Name, decimal Price, int StockQuantity) : IRequest<int>;
 }

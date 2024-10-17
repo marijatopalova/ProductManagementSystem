@@ -1,7 +1,6 @@
 ﻿using MediatR;
-using ProductManagementSystem.Domain.Entities;
 
 namespace ProductManagementSystem.Application.Commands.UpdateProduct
 {
-    public record UpdateProductCommand(Product Product) : IRequest<bool>;
+    public record UpdateProductCommand(int Id, string Name, decimal Price, int StockQuantity) : IRequest<bool>;
 }

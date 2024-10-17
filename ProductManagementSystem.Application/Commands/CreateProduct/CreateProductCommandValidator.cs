@@ -6,11 +6,11 @@ namespace ProductManagementSystem.Application.Commands.CreateProduct
     {
         public CreateProductCommandValidator()
         {
-            RuleFor(x => x.Product.Name)
+            RuleFor(x => x.Name)
                 .NotEmpty()
                 .WithMessage("Name is required");
 
-            RuleFor(x => x.Product.Price)
+            RuleFor(x => x.Price)
                 .GreaterThan(0)
                 .WithMessage("Price should be greater than zero");
         }

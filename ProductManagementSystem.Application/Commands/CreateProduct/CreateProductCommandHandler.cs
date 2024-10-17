@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using ProductManagementSystem.Application.Notifications;
+using ProductManagementSystem.Domain.Entities;
 using ProductManagementSystem.Domain.Interfaces;
 
 namespace ProductManagementSystem.Application.Commands.CreateProduct
@@ -9,9 +10,16 @@ namespace ProductManagementSystem.Application.Commands.CreateProduct
     {
         public async Task<int> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            var productId = await productRepository.AddProductAsync(command.Product);
+            var product = new Product
+            {
+                Name = command.Name,
+                Price = command.Price,
+                StockQuantity = command.StockQuantity,
+            };
 
-            await mediator.Publish(new ProductCreatedNotification(command.Product), cancellationToken);
+            var productId = await productRepository.AddProductAsync(product);
+
+            await mediator.Publish(new ProductCreatedNotification(product), cancellationToken);
 
             return productId;
         }

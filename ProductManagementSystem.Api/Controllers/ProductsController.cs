@@ -32,7 +32,9 @@ namespace ProductManagementSystem.Api.Controllers
         [HttpPost("/products")]
         public async Task<ActionResult<int>> CreateAsync([FromBody] Product product)
         {
-            var productId = await mediator.Send(new CreateProductCommand(product));
+            var command = new CreateProductCommand(product.Name, product.Price, product.StockQuantity);
+
+            var productId = await mediator.Send(command);
 
             return Ok(productId);
         }
@@ -40,7 +42,9 @@ namespace ProductManagementSystem.Api.Controllers
         [HttpPut("/products")]
         public async Task<ActionResult> UpdateAsync([FromBody] Product product)
         {
-            await mediator.Send(new UpdateProductCommand(product));
+            var command = new UpdateProductCommand(product.Id, product.Name, product.Price, product.StockQuantity);
+
+            await mediator.Send(command);
 
             return Ok();
         }
