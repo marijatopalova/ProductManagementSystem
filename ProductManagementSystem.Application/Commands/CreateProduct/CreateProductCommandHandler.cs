@@ -11,7 +11,7 @@ namespace ProductManagementSystem.Application.Commands.CreateProduct
         {
             var productId = await productRepository.AddProductAsync(command.Product);
 
-            await mediator.Publish(new ProductCreatedNotification(command.Product));
+            await mediator.Publish(new ProductCreatedNotification(command.Product), cancellationToken);
 
             return productId;
         }

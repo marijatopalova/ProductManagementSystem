@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ProductManagementSystem.Application.Notifications
 {
-    public class ProductCreatedNotificationHandler(ILogger<ProductCreatedNotificationHandler> logger) 
+    public class LogProductCreationHandler(ILogger<LogProductCreationHandler> logger) 
         : INotificationHandler<ProductCreatedNotification>
     {
         public Task Handle(ProductCreatedNotification notification, CancellationToken cancellationToken)

@@ -5,7 +5,7 @@ using ProductManagementSystem.Application.Behaviors;
 using ProductManagementSystem.Domain.Interfaces;
 using ProductManagementSystem.Infrastructure.Persistence;
 using ProductManagementSystem.Infrastructure.Repositories;
-using System.Reflection;
+using ProductManagementSystem.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +26,9 @@ builder.Services.AddValidatorsFromAssembly(typeof(ValidationBehavior<,>).Assembl
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IInventoryService, InventoryService>();
+
+builder.Services.AddLogging();
 
 var app = builder.Build();
 
