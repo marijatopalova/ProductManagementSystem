@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductManagementSystem.Domain\ProductManagementSystem.Domain.csproj" />
     <ProjectReference Include="..\ProductManagementSystem.Infrastructure\ProductManagementSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProductManagementSystem.Shared\ProductManagementSystem.Shared.csproj" />
   </ItemGroup>
 
 </Project>

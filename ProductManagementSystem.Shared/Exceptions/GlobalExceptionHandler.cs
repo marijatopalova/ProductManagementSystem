@@ -23,8 +23,21 @@ namespace ProductManagementSystem.Shared.Exceptions
         private static Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+            if (exception is NotFoundException)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                var notFoundErrorResponse = new
+                {
+                    StatusCode = (int)HttpStatusCode.NotFound,
+                    Message = "Resource not found",
+                    Detailed = exception.Message
+                };
+
+                return context.Response.WriteAsync(JsonConvert.SerializeObject(notFoundErrorResponse));
+            }
+
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             var errorResponse = new
             {
                 StatusCode = context.Response.StatusCode,

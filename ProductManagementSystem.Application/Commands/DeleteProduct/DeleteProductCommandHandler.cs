@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using ProductManagementSystem.Domain.Interfaces;
+using ProductManagementSystem.Shared.Exceptions;
 
 namespace ProductManagementSystem.Application.Commands.DeleteProduct
 {
@@ -12,7 +13,7 @@ namespace ProductManagementSystem.Application.Commands.DeleteProduct
 
             if (!isDeleted)
             {
-                throw new Exception("Product not found");
+                throw new NotFoundException("Product not found or might have been deleted in the meantime");
             }
 
             return isDeleted;
