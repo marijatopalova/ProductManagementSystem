@@ -10,6 +10,11 @@ namespace ProductManagementSystem.Application.Commands.DeleteProduct
         {
             var isDeleted = await productRepository.DeleteProductAsync(command.Id);
 
+            if (!isDeleted)
+            {
+                throw new Exception("Product not found");
+            }
+
             return isDeleted;
         }
     }

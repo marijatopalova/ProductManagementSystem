@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProductManagementSystem.Application\ProductManagementSystem.Application.csproj" />
     <ProjectReference Include="..\ProductManagementSystem.Infrastructure\ProductManagementSystem.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProductManagementSystem.Shared\ProductManagementSystem.Shared.csproj" />
   </ItemGroup>
 
 </Project>

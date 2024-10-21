@@ -9,6 +9,7 @@ using ProductManagementSystem.Infrastructure;
 using ProductManagementSystem.Infrastructure.Persistence;
 using ProductManagementSystem.Infrastructure.Repositories;
 using ProductManagementSystem.Infrastructure.Services;
+using ProductManagementSystem.Shared.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,5 +43,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<GlobalExceptionHandler>();
 
 app.Run();
